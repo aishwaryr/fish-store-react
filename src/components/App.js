@@ -15,6 +15,8 @@ class App extends React.Component {
         this.loadSamples = this.loadSamples.bind(this);
         this.addToOrder = this.addToOrder.bind(this);
         this.removeFromOrder = this.removeFromOrder.bind(this);
+        this.minusOneFish = this.minusOneFish.bind(this);
+        this.addOneFish = this.addOneFish.bind(this);
 
         //getInitialState
         this.state = {
@@ -100,6 +102,18 @@ class App extends React.Component {
 
     }
 
+    minusOneFish(key) {
+        const order = {...this.state.order};
+        order[key]--;
+        this.setState({ order });
+    }
+
+    addOneFish(key) {
+        const order = {...this.state.order};
+        order[key]++;
+        this.setState({ order });
+    }
+
     render () {
         return (
             <div className="catch-of-the-day">
@@ -125,6 +139,8 @@ class App extends React.Component {
                     order={this.state.order}
                     params={this.props.params}
                     removeFromOrder={this.removeFromOrder}
+                    minusOneFish={this.minusOneFish}
+                    addOneFish={this.addOneFish}
                  />
                 <Inventory
                     addFish={this.addFish}
